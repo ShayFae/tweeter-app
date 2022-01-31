@@ -1,0 +1,36 @@
+  .title {
+    padding-left: 1.5em;
+    margin: 1.5em;
+  }
+ 
+ 
+ .nav {
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #4056A1;
+  border: 1.5em;
+  flex-wrap: wrap;
+  /* margin: 40px; */
+  height: 120px;
+  /* padding-left: 1.5em; */
+  /* border-radius: 5%; */
+  font-family: 'Bungee', cursive;
+  position:static;
+  z-index: 10;
+ }
+
+ .write-tweet {
+  font-family: 'Source Sans Pro', sans-serif;
+  padding-right: 1.5em;
+  margin: 1em;
+  margin-bottom: 0;
+}
+
+  .fas {
+    color: red;
+    width: 100%;
+    text-align: center;
+  
+  }
