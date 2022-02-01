@@ -20,14 +20,13 @@
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
-
-
-
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
   </head>
 
   <body>
@@ -37,11 +36,8 @@
       <span class="write-tweet">
         <b style="font-weight: 600;">Write</b> a new tweet<i class="fas fa-angle-double-down"></i> 
       </span>
-     <!-- <div class="arrow">
-      <i class="fas fa-angle-double-down"></i> 
-     </div> -->
     </nav>
-    <header>
+    <header class="first-header">
       <div>
           <img src="/images/profile-hex.png"> 
       </div>
@@ -52,19 +48,54 @@
     </header>
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <h1>@Hodor</h1>
-      <p>Hodor. Hodor hodor, hodor. Hodor hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor; hodor hodor hodor. Hodor. Hodor hodor; hodor hodor - hodor, hodor, hodor hodor. Hodor, hodor. Hodor. Hodor, hodor hodor hodor; hodor hodor; hodor hodor hodor! Hodor hodor HODOR! Hodor hodor... Hodor hodor hodor...</p>
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
         <form action="/tweets" method="POST">
-          <!-- <label for="tweet-text">What are you humming about?</label> -->
+          <label for="tweet-text">What are you humming about?</label>
           <br>
-          <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
+          <textarea name="text" id="tweet-text"></textarea>
           <div class="tweet-post">
             <button type="submit">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
+      </section>
+      <section class="past-tweet">
+        <article>
+          <div class="tweet-header">
+           <span>Jon</span> <span>@KingOfTheNorth</span>
+          </div>
+           <br>
+            <label>They Were Born On The Wrong Side Of The Wall - Doesn't Make Them Monsters.</label>
+            <hr>
+            <input type="text">
+
+          <footer>
+            <span>Date</span> <span class="tweet-icons"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i> <i class="fas fa-heart"></i></span> 
+          </footer>
+        </article>
+        <article>
+          <div class="tweet-header">
+           <span>Tyrion</span> <span>@KingsHand</span>
+          </div>
+           <br>
+            <label>A mind needs books like a sword needs a whetstone</label>
+            <input type="text">
+          <footer>
+            <span>Date</span> <span class="tweet-icons"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i> <i class="fas fa-heart"></i></span> 
+          </footer>
+        </article>
+        <article>
+          <div class="tweet-header">
+           <span>Hordor</span> <span>@HoldTheDoor</span>
+          </div>
+           <br>
+            <label>Hodor? Hodor.</label>
+            <input type="text">
+          <footer>
+            <span>Date</span> <span class="tweet-icons"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i> <i class="fas fa-heart"></i></span> 
+          </footer>
+        </article>
       </section>
     </main>
   </body>
