@@ -11,13 +11,12 @@
   background-color: #4056A1;
   border: 1.5em;
   flex-wrap: wrap;
-  /* margin: 40px; */
   height: 120px;
-  /* padding-left: 1.5em; */
-  /* border-radius: 5%; */
   font-family: 'Bungee', cursive;
-  position:static;
+  position: fixed;
+  top: 0;
   z-index: 10;
+  width: 100%;
  }
 
  .write-tweet {
