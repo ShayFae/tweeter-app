@@ -5,7 +5,7 @@ $(document).ready(function() {
    if(counter < 0) {
     $('.counter').addClass('negative');
   }
-   console.log(counter)
+  //  console.log(counter)
    $('.counter').text(counter)
  })
 });
