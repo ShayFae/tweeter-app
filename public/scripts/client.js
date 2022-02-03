@@ -16,17 +16,25 @@ $(document).ready(function() {
     }
   }
 
+
+  //escape function given in compass
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
   const createTweetElement = function(callTweet) {
   let $tweet = `
     <article>
       <div class="tweet-header">
-        <span><img class="avatarImg" src="${callTweet.user.avatars}"> ${callTweet.user.name}</span> <span>${callTweet.user.handle}</span>
+        <span><img class="avatarImg" src="${escape(callTweet.user.avatars)}"> ${escape(callTweet.user.name)}</span> <span>${escape(callTweet.user.handle)}</span>
       </div>
       <br>
-      <p class="tweet-content">${callTweet.content.text}.</p>
+      <p class="tweet-content">${escape(callTweet.content.text)}.</p>
       <input type="text">
       <footer>
-        <span>${timeago.format(callTweet.created_at)}</span> <span class="tweet-icons"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i> <i class="fas fa-heart"></i></span> 
+        <span>${escape(timeago.format(callTweet.created_at))}</span> <span class="tweet-icons"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i> <i class="fas fa-heart"></i></span> 
       </footer>
     </article>
   `
@@ -38,25 +46,38 @@ $(document).ready(function() {
     const serForm = $('form').serialize();
    let textareaVal = $('#tweet-text').val()
   //  console.log(textareaVal);
-   if(textareaVal === '') {
-     console.log('yes')
-     alert('Text area is empty, please fill in and submit');
-   } else if(textareaVal === null) {
-     alert('Text area is null, please fill correctly and submit');
-   }
-    $.post('/tweets', serForm).then(function() {
+    $.post('/tweets', serForm).then(function(data) {
+      // if(textareaVal === '' || textareaVal.length === 0) {
+      //   //  console.log('yes')
+      //   textareaVal.empty()
+      //    alert('Text area is empty, please fill in and submit');
+      //  } else if(textareaVal === null) {
+      //    alert('Text area is null, please fill correctly and submit');
+      //    textareaVal.preventDefault();
+      //  } else if(textareaVal.length > 140) {
+      //   alert('You"ve exceeded the maximum characters allowed, please fill correctly and submit');
+      //   textareaVal.preventDefault();
+      //  }
       // console.log(data)
       // console.log(renderTweets(data))
-      renderTweets(tweetObj);
+      //Keeps all added tweets in an object
+      renderTweets(data);
+      $.get('/tweets', function(data) {
+        console.log('this is load tweets', data.slice(-1));
+        //removes everything but the last(lastest) user information within the array
+        let slicedTweet = data.slice(-1)
+        renderTweets(slicedTweet)
+        // console.log(slicedTweet)
+      })
     })
   });
- 
-  let tweetObj = {};
+  
   const loadTweets = function() {
     $.get('/tweets', function(data) {
-      console.log('this is load tweets', data);
-      tweetObj = data;
-      // console.log(tweetObj)
+      // console.log('this is load tweets', data);
+      // tweetObj = data;
+      renderTweets(data)
+      // console.log('THIS IS WEIRD',tweetObj)
     })
   }
   loadTweets();
