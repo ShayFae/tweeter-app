@@ -5,46 +5,6 @@
  */
 
 $(document).ready(function() {
-
-// Test / driver code (temporary). Eventually will get this from the server.
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
-
-  const tweetData = {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@SirIsaac"
-      },
-    "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-    "created_at": 1461116232227
-  }
-
-
   const renderTweets = function(tweets) {
     // loops through tweets
     for(const tweet of tweets) {
@@ -72,18 +32,32 @@ $(document).ready(function() {
   `
   return $tweet;
   }
-  renderTweets(data);
 
   $('form').on('submit', function(event) {
-    console.log('TEST')
     event.preventDefault();
-    const serTest = $('form').serialize();
-    console.log(serTest)
-    $.post('/tweets', serTest).then(function(data) {
+    const serForm = $('form').serialize();
+   let textareaVal = $('#tweet-text').val()
+  //  console.log(textareaVal);
+   if(textareaVal === '') {
+     console.log('yes')
+     alert('Text area is empty, please fill in and submit');
+   } else if(textareaVal === null) {
+     alert('Text area is null, please fill correctly and submit');
+   }
+    $.post('/tweets', serForm).then(function() {
       // console.log(data)
       // console.log(renderTweets(data))
-      renderTweets(data);
+      renderTweets(tweetObj);
     })
   });
-  
+ 
+  let tweetObj = {};
+  const loadTweets = function() {
+    $.get('/tweets', function(data) {
+      console.log('this is load tweets', data);
+      tweetObj = data;
+      // console.log(tweetObj)
+    })
+  }
+  loadTweets();
 });

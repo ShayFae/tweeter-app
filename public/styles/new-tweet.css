@@ -113,9 +113,10 @@ footer {
 .tweet-content {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
+    margin-top: 0;
     padding-left: 20px;
 }
 
 .avatarImg {
-  width: 30%
+  width: 20%
 }
