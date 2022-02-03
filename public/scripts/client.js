@@ -16,7 +16,6 @@ $(document).ready(function() {
     }
   }
 
-
   //escape function given in compass
   const escape = function (str) {
     let div = document.createElement("div");
@@ -24,6 +23,7 @@ $(document).ready(function() {
     return div.innerHTML;
   };
 
+  //Tweet template
   const createTweetElement = function(callTweet) {
   let $tweet = `
     <article>
@@ -42,41 +42,45 @@ $(document).ready(function() {
   }
 
   $('form').on('submit', function(event) {
+    // $('.counter').text(140)
+    //Put the textarea value take from it's attached class into a variable
+    let textareaVal = $('#tweet-text').val()
+    //conditions to check against the variable and return the error plus prevent it from posting
+    if(textareaVal.length === 0) {
+      $('.error').text('Text area is empty, please fill in and submit').slideDown();
+      return false
+    } else if(textareaVal.length > 140) {
+      $('.error').text("You've exceeded the maximum characters allowed, please fill in correctly and submit").slideDown();
+      return false;
+    } else if(textareaVal === null) {
+      $('.error').text("'Text area is null, please fill correctly and submit'").slideDown();
+      return false
+      //if none apply then we remove text within the div that has the error class
+    } else {
+      $('.error').empty();
+    }
+
     event.preventDefault();
     const serForm = $('form').serialize();
-   let textareaVal = $('#tweet-text').val()
-  //  console.log(textareaVal);
+
     $.post('/tweets', serForm).then(function(data) {
-      // if(textareaVal === '' || textareaVal.length === 0) {
-      //   //  console.log('yes')
-      //   textareaVal.empty()
-      //    alert('Text area is empty, please fill in and submit');
-      //  } else if(textareaVal === null) {
-      //    alert('Text area is null, please fill correctly and submit');
-      //    textareaVal.preventDefault();
-      //  } else if(textareaVal.length > 140) {
-      //   alert('You"ve exceeded the maximum characters allowed, please fill correctly and submit');
-      //   textareaVal.preventDefault();
-      //  }
-      // console.log(data)
-      // console.log(renderTweets(data))
       //Keeps all added tweets in an object
       renderTweets(data);
       $.get('/tweets', function(data) {
         console.log('this is load tweets', data.slice(-1));
         //removes everything but the last(lastest) user information within the array
-        let slicedTweet = data.slice(-1)
-        renderTweets(slicedTweet)
+        let slicedTweet = data.slice(-1);
+        renderTweets(slicedTweet);
         // console.log(slicedTweet)
       })
     })
   });
-  
+
   const loadTweets = function() {
     $.get('/tweets', function(data) {
       // console.log('this is load tweets', data);
       // tweetObj = data;
-      renderTweets(data)
+      renderTweets(data);
       // console.log('THIS IS WEIRD',tweetObj)
     })
   }

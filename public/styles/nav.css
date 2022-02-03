@@ -31,4 +31,9 @@
   color: red;
   width: 100%;
   text-align: center;
+  animation: bounce 1s ;
+}
+
+@keyframes bounce {
+
 }

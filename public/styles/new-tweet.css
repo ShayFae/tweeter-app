@@ -120,3 +120,37 @@ footer {
 .avatarImg {
   width: 20%
 }
+
+.error {
+  color: red;
+  /* border: solid red; */
+  display:none;
+  /* visibility: hidden; */
+  text-align: start;
+  width: 50%;
+  padding: 10px;
+  font-weight: 600;
+}
+ p {
+   width: 100ch;
+  /* border: solid;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: transparent; 
+  border-width: thick;
+  align-items: center;
+  padding-top: 50px; */
+} 
+
+/* .tweet-button {
+  animation: bounce 5s 0s ease-in-out infinite;
+
+}
+
+@keyframes bounce{
+  0% {
+    top: 0;
+  }
+} */
