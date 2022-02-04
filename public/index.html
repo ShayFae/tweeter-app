@@ -38,6 +38,7 @@
         <b style="font-weight: 600;">Write</b> a new tweet<i class="fas fa-angle-double-down"></i> 
       </span>
     </nav>
+    <div class="move">asdasd</div>
     <header class="first-header">
       <div>
           <img src="/images/profile-hex.png"> 
@@ -50,13 +51,9 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
         <div class="error"></div>
         <form action="/tweets" method="post" >
-          
-          <label for="tweet-text">What are you humming about?</label>
-          <br>
-          <textarea name="text" id="tweet-text" ></textarea>
+          <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <div class="tweet-post">
             <button class="tweet-button" type="submit">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
