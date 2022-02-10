@@ -4,7 +4,6 @@
     const renderTweets = function (tweets) {
       // loops through tweets
       for (const tweet of tweets) {
-        // console.log(tweet)
         // calls createTweetElement for each tweet
         let callTweet = createTweetElement(tweet)
         // takes return value and appends it to the tweets container
@@ -12,7 +11,7 @@
       }
     }
 
-    //escape function given in compass
+    //escape function given in compass(It doesn't allow users to run scripts using the textarea)
     const escape = function (str) {
       let div = document.createElement("div");
       div.appendChild(document.createTextNode(str));
@@ -38,11 +37,8 @@
     }
     //Listening for sumbit event on the form
     $('form').on('submit', function (event) {
-      // $('.counter').text(140)
       //Put the textarea value taken from it's attached class into a variable
       let textareaVal = $('#tweet-text').val()
-
-      // console.log('this is text', textareaVal[0])
       if (textareaVal === ' ') {
         console.log('yes')
       }
@@ -63,7 +59,6 @@
 
       event.preventDefault();
       const serForm = $('form').serialize();
-
       $.post('/tweets', serForm).then(function (data) {
         //Keeps all added tweets in an object
         renderTweets(data);
@@ -72,9 +67,12 @@
           //removes everything but the last(lastest) user information within the array
           let slicedTweet = data.slice(-1);
           renderTweets(slicedTweet);
-          // console.log(slicedTweet)
         })
       })
+      //clears the textarea 
+      $('#tweet-text').val('')
+      //resets the counter 
+      $('.counter').val(140)
     });
     //gets the data and loads all the tweets
     const loadTweets = function () {

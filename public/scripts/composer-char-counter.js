@@ -11,9 +11,9 @@
       let findParent = text.closest('form')
       //then from that parent we go down through its children and find the matching class(.counter)
       let findCounter = findParent.find('.counter')
-      // console.log(count)
       //then we take that variable that contains the found class and replace the text within it with whatever value count has
       findCounter.text(count)
+      
       if (count < 0) {
         $('.counter').addClass('negative');
         //Need else to remove class
